@@ -19,10 +19,10 @@ fs.appendFile('server.log', log + '\n',(err) =>{
 next();
 })
 
-
+/*
 app.use((req,res,next)=>{
  res.render('maintenance.hbs');
-})
+})*/
 
 app.use(express.static(__dirname + '/public'));
 
@@ -33,32 +33,33 @@ hbs.registerHelper('getCurrentYear', () => {
 
 app.get('/', (req, res) => {
     res.render('home.hbs', {
-        pageTitle: 'Home Page',
-        welcomeMessage: 'Welcome to my website!',
-
+        title: 'Home Page',
+        message: 'Welcome to my website!',
     })
 })
 
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
-        header: 'About',
-        pageTitle: 'About Page'
+        title: 'About Page',
+        message: 'Know about us!',
     });
 })
 
 
 app.get('/help', (req, res) => {
     res.render('about.hbs', {
-        header: 'Help',
-        pageTitle: 'Help Page',
+        title: 'Help Page',
+        message: 'Want some help?',
     });
 })
 
-app.get('/bad', (req, res) => {
-    res.send({
-        errorMessage: "Unable to handle request"
-    })
+app.get('/projects', (req, res) => {
+    res.render('about.hbs', {
+        title: 'Projects Page',
+        message: 'Take a view of out projects!',
+    });
 })
+
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
